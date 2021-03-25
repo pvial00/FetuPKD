@@ -1,7 +1,7 @@
 from Crypto.Util import number
 
 ''' KryptoMagick 2021 '''
-''' This code demonstrates the Fetu PKD algorithm '''
+''' This code demonstrates the reduced Fetu I algorithm '''
 
 def genBase(size):
     A = number.getPrime(size)
@@ -38,17 +38,9 @@ def fetu_demo(size):
     p1 = pow(p0, y, MA)
     p1B = pow(p0B, y, MA)
     print(p1, p1B)
-    print("Arrive at the secret modulus phase2")
+    print("Arrive at the secret key phase2")
     p2 = pow(p1B, TkA, MA)
     p2B = pow(p1, TkB, MA)
     print(p2, p2B)
-    print("Exchange phase3")
-    p3 = pow(yB, skA, p2)
-    p3B = pow(yB, skB, p2B)
-    print(p3, p3B)
-    print("Arrive at the shared key phase4")
-    p4 = pow(p3B, skA, p2)
-    p4B = pow(p3, skB, p2B)
-    print(p4, p4B)
 
 fetu_demo(256)
