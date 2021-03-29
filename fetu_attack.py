@@ -48,17 +48,14 @@ def discreteLogarithm(a, b, m):
 
     return -1;
 
-def fetu_factor(a, b, m, q):
-    x = m % a
-    y = 1
-    z = q % a
-    print(x, b, a)
-    while y != q:
-        a = ((a + 1) % m)
-        y = q % a
-    a -= 1
-    print(a)
-    
+def fetu_factor(p, y, m, q):
+    x = m % p
+    z = p % y
+    print(x, z, p)
+    while p != y:
+        p = ((p + 1) % m)
+    p -= 1
+    print(p)
 
 from Crypto.Util import number
 
@@ -116,13 +113,15 @@ print("sk", p4, p4B)
 keylen = len(number.long_to_bytes(p4))
 print("keylen", keylen)
 print(p1, p1B)
-t0 = number.inverse(p1, MA)
+t0 = number.inverse(p1, nA)
 print("inverse", t0)
 t1 = pow(t0, p1, MA)
 print(t1)
-Osk = discreteLogarithm(p1, y, MA)
-print(Osk)
-o0 = pow(p1, Osk, MA)
+x = pow(y, p1, MA)
+print("x", x)
+Osk = discreteLogarithm(nA, p1, MA)
+print("Osk", Osk)
+o0 = pow(p1B, Osk, MA)
 print(o0)
 o1 = pow(o0, Osk, MA)
 print(o1)
